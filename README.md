@@ -29,9 +29,9 @@
         - список песен в альбоме с указанием длительности
 - ~~Запросы к API осуществляются через [axios](https://github.com/axios/axios)в файле ``src/plugins/lastfm.js`` и доступны через ``this.$lastfm``~~
 - В качестве css-фреймворка используйте [vuetify](https://vuetifyjs.com/ru/)
-- Для роутинга используйте [vue-router](https://router.vuejs.org/ru/)            
+- ~~Для роутинга используйте [vue-router](https://router.vuejs.org/ru/)~~            
 - Отображать ошибки при запросах и прогресс во время загрузок данных
 - Дополнительно для списков реализовать бесконечную прокрутку с помощью [vue-infinite-loading](https://www.npmjs.com/package/vue-infinite-loading)
 - Дополнительно реализовать [skeleton-loading](https://vuetifyjs.com/ru/components/skeleton-loaders/) при загрузке данных       
 - Использовать vuex не обязательно, но будет плюсом
-- Использовать async / await и другие возможности ES6
+- ~~Использовать async / await и другие возможности ES6~~
