@@ -27,7 +27,7 @@
         - количество прослушиваний
         - количество одновременных слушателей
         - список песен в альбоме с указанием длительности
-- ~~Запросы к API осуществляются через [axios](https://github.com/axios/axios)в файле ``src/plugins/lastfm.js`` и доступны через ``this.$lastfm``
+- ~~Запросы к API осуществляются через [axios](https://github.com/axios/axios)в файле ``src/plugins/lastfm.js`` и доступны через ``this.$lastfm``~~
 - В качестве css-фреймворка используйте [vuetify](https://vuetifyjs.com/ru/)
 - Для роутинга используйте [vue-router](https://router.vuejs.org/ru/)            
 - Отображать ошибки при запросах и прогресс во время загрузок данных
