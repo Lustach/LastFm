@@ -40,6 +40,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
+  async created(){
+    const res = await this.$lastfm.chart.getTopArtists()
+    console.log(res.data,'data')
+  }
 }
 </script>
 
