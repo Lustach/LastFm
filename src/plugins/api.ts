@@ -6,8 +6,10 @@ const token = process.env.VUE_APP_KEY
 const API = {
   lastfm: {
     chart: {
-      getTopArtists: (page?: number, limit?: number) => axios.get(`${BASE_URL}?method=chart.gettopartists&api_key=${token}&format=json`),
-      getTopTracks: (page?: number, limit?: number) => axios.get(`${BASE_URL}?method=chart.gettoptracks&api_key=${token}&format=json`),
+      getTopArtists: (page?: number, limit?: number) => axios.get(`${BASE_URL}?method=chart.gettopartists&api_key=${token}&format=json`,
+        {params:{ page: page, limit: limit }}),
+      getTopTracks: (page?: number, limit?: number) =>
+        axios.get(`${BASE_URL}?method=chart.gettoptracks&api_key=${token}&format=json`),
     },
     artist: {
       getTopAlbums: (artist: string) => axios.get(`${BASE_URL}?method=chart.gettopalbums&api_key=${token}&format=json`),

@@ -1,32 +1,39 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="red accent-4"
+      dark
+    >
+      <router-link to="/TopArtists" class="d-flex align-center">
+        <v-img
+          class="shrink mr-2"
+          contain
+          src="https://lh3.googleusercontent.com/9PeW7X2dERrVT2LeNV1ij-OsNhatfBSK-GmXTnslj69BM2TJoKlLcgDnqyY4fAzbqrM"
+          transition="scale-transition"
+          width="130"
+        />
+      </router-link>
+
+      <v-spacer></v-spacer>
+
+    </v-app-bar>
+
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import Vue from 'vue';
+import HelloWorld from './components/HelloWorld.vue';
 
-#nav {
-  padding: 30px;
+export default Vue.extend({
+  name: 'App',
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+  data: () => ({
+    //
+  }),
+});
+</script>
