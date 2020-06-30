@@ -1,3 +1,5 @@
+# Заметки 
+- Использовать vuex здесь не надо
 ### Тестовое задание 
 - Используя API сервиса last.fm отобразить:
     - топ исполнителей [(chart.getTopArtists)](https://www.last.fm/api/show/chart.getTopArtists)
@@ -32,6 +34,5 @@
 - ~~Для роутинга используйте [vue-router](https://router.vuejs.org/ru/)~~            
 - Отображать ошибки при запросах и прогресс во время загрузок данных
 - Дополнительно для списков реализовать бесконечную прокрутку с помощью [vue-infinite-loading](https://www.npmjs.com/package/vue-infinite-loading)
-- Дополнительно реализовать [skeleton-loading](https://vuetifyjs.com/ru/components/skeleton-loaders/) при загрузке данных       
-- Использовать vuex не обязательно, но будет плюсом
+- Дополнительно реализовать [skeleton-loading](https://vuetifyjs.com/ru/components/skeleton-loaders/) при загрузке данных
 - ~~Использовать async / await и другие возможности ES6~~
