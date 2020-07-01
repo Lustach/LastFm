@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TopArtists/>
+    <AlbumPage/>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 export default {
 	name: 'Main',
 	components: {
-		TopArtists:()=>import('../components/TopArtists/TopArtists.vue')
+		AlbumPage:()=>import('../components/AlbumPage/AlbumPage.vue')
 	}
 }
 </script>

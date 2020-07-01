@@ -18,7 +18,8 @@ const API = {
 
     },
     album: {
-      getInfo: (artist: string, album: string) => axios.get(`${BASE_URL}?method=album.getinfo&api_key=${token}&format=json`),
+      getInfo: (artist: string, album: string) => axios.get(`${BASE_URL}?method=album.getinfo&api_key=${token}&format=json`,
+        { params: { artist: artist, album: album } }),
     }
   },
   platform: {

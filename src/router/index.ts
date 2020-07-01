@@ -4,18 +4,13 @@ import VueRouter, { RouteConfig } from 'vue-router'
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
-  // {
-  //   path: '/album_page',
-  //   name: 'AlbumPage',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/AlbumPage.vue')
-  // },
-  // {
-  //   path: '/topAlbumsOfArtist',
-  //   name: 'TopAlbumsOfArtist',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/TopAlbumsOfArtist.vue')
-  // },
   {
-    path: '/TopArtists',
+    path: '/album/:name?',
+    name: 'albumPage',
+    component: () => import('../views/AlbumInfo.vue')
+  },
+  {
+    path: '/TopArtists/:artistName?',
     name: 'TopArtists',
     component: () => import('../views/Main.vue')
   },
