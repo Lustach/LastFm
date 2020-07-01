@@ -1,20 +1,9 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
   // {
   //   path: '/album_page',
   //   name: 'AlbumPage',
@@ -28,13 +17,13 @@ const routes: Array<RouteConfig> = [
   {
     path: '/TopArtists',
     name: 'TopArtists',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Main.vue')
+    component: () => import('../views/Main.vue')
   },
-  // {
-  //   path: '/TopSongs',
-  //   name: 'TopSongs',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/TopSongs.vue')
-  // },
+  {
+    path: '/TopSongs',
+    name: 'TopSongs',
+    component: () => import(/* webpackChunkName: "about" */ '../views/TopSongs.vue')
+  },
 ]
 
 const router = new VueRouter({

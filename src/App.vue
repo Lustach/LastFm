@@ -14,6 +14,7 @@
           width="130"
         />
       </router-link>
+      <router-link style="color:white;text-decoration: none;" to="/TopSongs" class="d-flex align-center">Топ треков</router-link>
 
       <v-spacer></v-spacer>
 
