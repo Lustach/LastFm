@@ -22,16 +22,6 @@ const API = {
         { params: { artist: artist, album: album } }),
     }
   },
-  platform: {
-    menu: () => axios.get('/api/platform/menu'),
-    logs: {
-      messages: (size: number, token: string) => axios({
-        method: 'GET',
-        url: '/api/platform/logs',
-        params: { size, token }
-      })
-    }
-  },
 }
 
 export default {

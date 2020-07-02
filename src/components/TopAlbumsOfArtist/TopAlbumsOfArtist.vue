@@ -1,5 +1,5 @@
 <template>
-  <v-card style="overflow-y: auto;max-height: 90vh">
+  <v-card style="overflow-y: auto;max-height: 88vh">
     <v-card-text>
       <h1 class="pb-5">{{artist}}</h1>
       <div :key="i" v-for="(album,i) in albums">
@@ -43,7 +43,6 @@ export default class TopArtistAlbums extends Vue {
   @Prop({ default: {} }) readonly albums!: RecordCounter
 
   setData(album: object){
-    console.log(this.artist,album,'here')
     Vue.prototype.$albumInfo = {
       artist: this.artist,
       album: album.name,

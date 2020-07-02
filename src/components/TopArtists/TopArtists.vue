@@ -4,16 +4,16 @@
       <v-col cols="8">
         <!-- todo при наведении на tr показывать данные справа-->
         <v-data-table
-          height="90vh"
-          v-if="loaded"
           :headers="headers"
           :items="items"
           :items-per-page="20"
           :sort-desc="true"
           class="elevation-1"
+          height="88vh"
           hide-default-footer
-          sort-by="playcount"
           no-data-text="Нет данных"
+          sort-by="playcount"
+          v-if="loaded"
         >
 
           <template #item.image="{item}">
@@ -28,17 +28,17 @@
           </template>
         </v-data-table>
         <v-skeleton-loader
-          v-if="!loaded"
           class="mx-auto"
           type="table"
+          v-if="!loaded"
         ></v-skeleton-loader>
       </v-col>
       <v-col cols="4">
-        <TopAlbumsOfArtist  :albums="artistTopAlbums" :artist="artistName" v-if="showTopArtistAlbums&& loaded"/>
+        <TopAlbumsOfArtist :albums="artistTopAlbums" :artist="artistName" v-if="showTopArtistAlbums&& loaded"/>
         <v-skeleton-loader
-          v-if="!loaded"
           class="mx-auto"
           type="card"
+          v-if="!loaded"
         ></v-skeleton-loader>
       </v-col>
     </v-row>
@@ -46,7 +46,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
+import infiniteScroll from 'vue-infinite-scroll'
 
 interface RecordCounter {
   name: string;
@@ -59,9 +60,11 @@ interface RecordCounter {
   name: 'TopArtists',
   components: {
     TopAlbumsOfArtist: () => import('../TopAlbumsOfArtist/TopAlbumsOfArtist.vue')
-  }
+  },
+  directives: { infiniteScroll }
 })
 export default class HelloWorld extends Vue {
+
   items: Array<RecordCounter> = []
   artistTopAlbums: Array<RecordCounter> = [{
     name: '',
@@ -73,7 +76,7 @@ export default class HelloWorld extends Vue {
   // а вот такой подход tsc одобряет artistName?: string = '', или подход на строчку ниже
   artistName = ''
   showTopArtistAlbums = false
-  loaded=false
+  loaded = false
   headers = [
     {
       text: 'Обложка',
@@ -108,7 +111,7 @@ export default class HelloWorld extends Vue {
   ]
   $lastfm: any
 
-  created() {
+  mounted() {
     this.loadPage()
     if (this.$route.query.artistName) {
       this.openArtistAlbums(this.$route.query.artistName)
@@ -117,23 +120,17 @@ export default class HelloWorld extends Vue {
 
   async loadPage() {
     const result = await this.$lastfm.chart.getTopArtists()
-    this.loaded=true
-    /* todo придумать возможность фильтрации данных с любыми ключами */
-    // this.items = result.data.artists.artist.map((e: RecordCounter, i: number) => {
-    //     const hi = Object.keys(e).filter((el: any,i,array) => {
-    //         console.log(el,'EL',i,'I',array,'array',e,'HERE')
-    //         return Object.prototype.hasOwnProperty.call(this.items, el) ? e[el] : null
-    //     })
-    // })
-    this.items = result.data.artists.artist.map((e: RecordCounter) => {
-      const data: RecordCounter = {
-        name: e.name,
-        image: e.image[0]['#text'],
-        playcount: e.playcount,
-        listeners: e.listeners,
-      }
-      return data
-    })
+    this.loaded = true
+    this.items.push(...result.data.artists.artist.map((e: RecordCounter) => {
+        const data: RecordCounter = {
+          name: e.name,
+          image: e.image[0]['#text'],
+          playcount: e.playcount,
+          listeners: e.listeners,
+        }
+        return data
+      })
+    )
   }
 
   async openArtistAlbums(item: string) {
@@ -152,6 +149,10 @@ export default class HelloWorld extends Vue {
       }
       return data
     })
+  }
+
+  loadMore() {
+    console.log('loadMore')
   }
 }
 </script>
