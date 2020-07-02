@@ -4,8 +4,8 @@
       <h1 class="pb-5">{{artist}}</h1>
       <div :key="i" v-for="(album,i) in albums">
         <!--Вот тут конечно пригодился бы vuex, но vuex ради геттеров использовать это такое, пока удалять не буду, может пригодится-->
-        <router-link @click.native="setData(album)" :to="{ path: '/album', query: { name: album.name }}"  tag="div">
-          <v-col class="py-1 elevation-2">
+        <router-link  :to="{ path: '/album', query: { name: album.name }}"  tag="div">
+          <v-col @click="setData(album)" class="py-1 elevation-2">
             <v-row justify="center">
               <v-img :src="album.image" height="100px"
                      max-width="100px"></v-img>

@@ -1,10 +1,10 @@
 <template>
   <v-container>
-<!--    <router-link :to="{ name: 'TopSongs', query: { userId: 123 }}">Пользователь</router-link>-->
     <v-row class="text-center">
       <v-col cols="8">
         <!-- todo при наведении на tr показывать данные справа-->
         <v-data-table
+          height="90vh"
           v-if="loaded"
           :headers="headers"
           :items="items"
