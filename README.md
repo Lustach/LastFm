@@ -1,7 +1,5 @@
 # Заметки 
-- Использовать vuex здесь не надо
 Либы не хотят дружить с тайпскриптом
-даже ручная реализация скролла через $ref или querySelector вызывает Object is possibly null
 - Дополнительно для списков реализовать бесконечную прокрутку с помощью [vue-infinite-loading](https://www.npmjs.com/package/vue-infinite-loading)
 ### Тестовое задание 
 - Используя API сервиса last.fm отобразить:
