@@ -2,7 +2,6 @@
   <v-container>
     <v-row class="text-center">
       <v-col cols="8">
-        <!-- todo при наведении на tr показывать данные справа-->
         <v-data-table
           :headers="headers"
           :items="items"
@@ -47,7 +46,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import infiniteScroll from 'vue-infinite-scroll'
+import router from '@/router'
 
 interface RecordCounter {
   name: string;
@@ -61,7 +60,6 @@ interface RecordCounter {
   components: {
     TopAlbumsOfArtist: () => import('../TopAlbumsOfArtist/TopAlbumsOfArtist.vue')
   },
-  directives: { infiniteScroll }
 })
 export default class HelloWorld extends Vue {
 
@@ -109,6 +107,7 @@ export default class HelloWorld extends Vue {
     },
 
   ]
+  dataTable!: HTMLElement
   $lastfm: any
 
   mounted() {
@@ -116,6 +115,14 @@ export default class HelloWorld extends Vue {
     if (this.$route.query.artistName) {
       this.openArtistAlbums(this.$route.query.artistName)
     }
+    router.beforeResolve((to, from, next) => {
+      if (to.query.artistName) {
+        next()
+        this.openArtistAlbums(this.$route.query.artistName)
+      } else {
+        next()
+      }
+    })
   }
 
   async loadPage() {
@@ -133,7 +140,8 @@ export default class HelloWorld extends Vue {
     )
   }
 
-  async openArtistAlbums(item: string) {
+  // @Watch('$route')
+  async openArtistAlbums(item = String(this.$route.query.artistName)) {
     /* todo */
     if (item === this.artistName) return
     if (item !== this.$route.query.artistName)
@@ -151,8 +159,5 @@ export default class HelloWorld extends Vue {
     })
   }
 
-  loadMore() {
-    console.log('loadMore')
-  }
 }
 </script>

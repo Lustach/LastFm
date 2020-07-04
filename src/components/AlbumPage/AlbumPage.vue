@@ -3,7 +3,7 @@
     <v-card style="overflow-y: auto;max-height: 90vh;overflow-x: hidden">
       <v-layout>
         <div>
-          <v-img :src="albumInfo.image" height="500px" max-height="500px" width="500px"></v-img>
+          <v-img :src="albumProp.image" height="500px" max-height="500px" width="500px"></v-img>
         </div>
         <div class="pl-5">
           <h1>{{albumProp.name}}</h1>
@@ -53,15 +53,18 @@ export default class AlbumPage extends Vue {
 
   created() {
     this.albumInfo = Vue.prototype.$albumInfo
+    console.log(Vue.prototype.$albumInfo,'Vue.prototype.$albumInfo')
     this.loadPage(Vue.prototype.$albumInfo)
   }
 
   async loadPage(albumProp: object) {
-    const result = (await this.$lastfm.album.getInfo(albumProp.artist, albumProp.album)).data.album
+    albumProp=this.$route.query
+    console.log(albumProp)
+    const result = (await this.$lastfm.album.getInfo(albumProp.artist, albumProp.name)).data.album
     this.loaded = true
     this.albumProp = {
         name: result.name,
-        image: result.image[0]['#text'],
+        image: result.image[3]['#text'],
         playcount: result.playcount,
         listeners: result.listeners,
         tracks: result.tracks.track,

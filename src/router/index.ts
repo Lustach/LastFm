@@ -10,6 +10,7 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/AlbumInfo.vue')
   },
   {
+  //
     path: '/TopArtists/:artistName?',
     name: 'TopArtists',
     component: () => import('../views/Main.vue')
@@ -26,5 +27,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
 
 export default router
