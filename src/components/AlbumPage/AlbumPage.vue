@@ -53,13 +53,11 @@ export default class AlbumPage extends Vue {
 
   created() {
     this.albumInfo = Vue.prototype.$albumInfo
-    console.log(Vue.prototype.$albumInfo,'Vue.prototype.$albumInfo')
     this.loadPage(Vue.prototype.$albumInfo)
   }
 
   async loadPage(albumProp: object) {
     albumProp=this.$route.query
-    console.log(albumProp)
     const result = (await this.$lastfm.album.getInfo(albumProp.artist, albumProp.name)).data.album
     this.loaded = true
     this.albumProp = {
