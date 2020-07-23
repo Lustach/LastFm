@@ -1,6 +1,5 @@
 # Заметки 
 v-data-table не работе с vue-infinite-loading, поэтому только такой скролл на главной
-- Дополнительно для списков реализовать бесконечную прокрутку с помощью [vue-infinite-loading](https://www.npmjs.com/package/vue-infinite-loading)
 ### Тестовое задание 
 - Используя API сервиса last.fm отобразить:
     - топ исполнителей [(chart.getTopArtists)](https://www.last.fm/api/show/chart.getTopArtists)
