@@ -5,7 +5,7 @@
         <v-data-table
           :headers="headers"
           :items="items"
-          :items-per-page="20"
+          :items-per-page="items.length"
           :sort-desc="true"
           class="elevation-1"
           height="88vh"
@@ -14,7 +14,6 @@
           sort-by="playcount"
           v-if="loaded"
         >
-
           <template #item.image="{item}">
             <img :src="item.image" alt="">
           </template>
@@ -69,12 +68,14 @@ export default class HelloWorld extends Vue {
     image: '',
     playcount: 0,
   }]
+  page = 1
   // tsc говорит что объявление простых типов излишне, поэтому такой подход он осуждает
   // artistName: string = ''
   // а вот такой подход tsc одобряет artistName?: string = '', или подход на строчку ниже
   artistName = ''
   showTopArtistAlbums = false
   loaded = false
+  infiniteId: number = +new Date()
   headers = [
     {
       text: 'Обложка',
@@ -109,6 +110,7 @@ export default class HelloWorld extends Vue {
   ]
   dataTable!: HTMLElement
   $lastfm: any
+  $refs: any = {}
 
   mounted() {
     this.loadPage()
@@ -123,10 +125,20 @@ export default class HelloWorld extends Vue {
         next()
       }
     })
+    setTimeout(() => {
+      console.log(document.querySelector('.v-data-table__wrapper'), 'omg')
+      const table = document.querySelector('.v-data-table__wrapper')
+      table.addEventListener('scroll', (e) => {
+        if (table.scrollTop + table.clientHeight >= table.scrollHeight) {
+          ++this.page
+          this.loadPage()
+        }
+      })
+    }, 1000)
   }
 
   async loadPage() {
-    const result = await this.$lastfm.chart.getTopArtists()
+    const result = await this.$lastfm.chart.getTopArtists(this.page)
     this.loaded = true
     this.items.push(...result.data.artists.artist.map((e: RecordCounter) => {
         const data: RecordCounter = {
