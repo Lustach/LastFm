@@ -1,5 +1,5 @@
 # Заметки 
-v-data-table не работе с vue-infinite-loading, поэтому только такой скролл на главной
+v-data-table не работе с vue-infinite-loading,v-scroll и т.д поэтому только такой скролл на главной
 ### Тестовое задание 
 - Используя API сервиса last.fm отобразить:
     - топ исполнителей [(chart.getTopArtists)](https://www.last.fm/api/show/chart.getTopArtists)
